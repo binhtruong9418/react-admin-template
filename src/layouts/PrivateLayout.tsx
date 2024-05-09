@@ -117,7 +117,7 @@ const PrivateLayout = () => {
                             }
                         }}
                     >
-                        {collapsed ? <MdSkipNext/> : <MdSkipPrevious/>}
+                        {desktopCollapsed ? <MdSkipNext/> : <MdSkipPrevious/>}
                     </button>
                 ) : (
                     <>
@@ -144,7 +144,7 @@ const PrivateLayout = () => {
                                 }
                             }}
                         >
-                            {collapsed ? <MdSkipNext/> : <MdSkipPrevious/>}
+                            {desktopCollapsed ? <MdSkipNext/> : <MdSkipPrevious/>}
                         </button>
                     </>
                 )}
