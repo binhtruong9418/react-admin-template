@@ -6,9 +6,9 @@ import {
 } from "react-router-dom";
 import {PrivateLayout} from "./index.ts";
 import {useMemo} from "react";
-import {JWT_LOCAL_STORAGE_KEY} from "../helper/constant";
+import {JWT_LOCAL_STORAGE_KEY} from "../config/constant";
 import {NotFoundPage} from "../pages";
-import appRoute from "../routes/appRoute.ts";
+import appRoute from "../config/routes/appRoute.ts";
 
 const AppLayout = () => {
     const location = useLocation();

@@ -6,26 +6,26 @@ This is a template for a React project using Vite and some other libraries like 
 
 1. Clone the repository
 
-```bash
+```
 git clone https://github.com/binhtruong9418/react-zustand-template.git
 ```
 
 2. Install dependencies
 
-```bash
+```
 cd react-zustand-template
 npm install
 ```
 
 3. Start the development server
 
-```bash
+```
 npm run dev
 ```
 
 ## Build and run the production server
 
-```bash
+```
 npm run build
 npm run preview
 ```
@@ -52,6 +52,19 @@ npm run preview
 - [React Hook](https://usehooks.com/)
 - [React Icons](https://react-icons.github.io/react-icons/)
 - [Antd](https://ant.design/)
+
+
+## Template structure and notes
+
+- `src/assets`: contains images, icons, and styles
+- `src/components`: contains shared components
+- `src/api`: contains Axios configuration
+- `src/helper`: contains helper functions
+- `src/config`: contains configurations like routes, languages, Zustand store and constants
+- `src/layouts`: contains layout components
+- `src/pages`: contains page components
+- `.env.development`: contains environment variables for development
+- `.env.production`: contains environment variables for production
 
 ENJOY!
 

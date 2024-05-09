@@ -5,7 +5,7 @@ import {useTranslation} from "react-i18next";
 import {Link, useNavigate} from "react-router-dom";
 import {isValidEmail} from "../../helper/utils";
 import {useLocalStorage} from "@uidotdev/usehooks"
-import {JWT_LOCAL_STORAGE_KEY} from "../../helper/constant";
+import {JWT_LOCAL_STORAGE_KEY} from "../../config/constant";
 import toast from "react-hot-toast";
 
 const Login = () => {

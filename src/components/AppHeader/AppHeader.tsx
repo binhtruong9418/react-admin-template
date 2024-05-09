@@ -3,7 +3,7 @@ import {Button, Image, Popover} from "antd";
 import {useNavigate} from "react-router-dom";
 import {GrLogout} from "react-icons/gr";
 import Logo from '../../assets/react.svg';
-import {JWT_LOCAL_STORAGE_KEY} from "../../helper/constant";
+import {JWT_LOCAL_STORAGE_KEY} from "../../config/constant";
 import {
     MenuFoldOutlined,
     MenuUnfoldOutlined,
@@ -26,7 +26,7 @@ const AppHeader = ({setCollapsed, collapsed}: { setCollapsed: (value: boolean) =
         <div className="app-header">
             <div className="header-left">
                 {
-                    width && width < 768 && (
+                    width && width < 992 && (
                         <div
                             onClick={() => setCollapsed(!collapsed)}
                             className={'bg-black w-10 h-10 flex justify-center items-center hover:opacity-80 cursor-pointer rounded-lg'}

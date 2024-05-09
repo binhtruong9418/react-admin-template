@@ -1,4 +1,4 @@
-import React, {useEffect, useState} from "react";
+import React, {useEffect, useMemo, useState} from "react";
 import type {MenuProps} from "antd";
 import {Layout, Menu} from "antd";
 import './index.css';
@@ -10,6 +10,7 @@ import {IoMdAdd, IoMdHome} from "react-icons/io";
 import {CiBoxList} from "react-icons/ci";
 import Logo from '../assets/react.svg'
 import {useWindowSize} from "@uidotdev/usehooks";
+import {MdSkipNext, MdSkipPrevious} from "react-icons/md";
 
 const {Header, Content, Sider} = Layout;
 
@@ -39,6 +40,7 @@ const itemRoute = {
 
 const PrivateLayout = () => {
     const [collapsed, setCollapsed] = useState(false);
+    const [desktopCollapsed, setDesktopCollapsed] = useState(false);
     const [activeKey, setActiveKey] = useState(["1"]);
     const [openKey, setOpenKey] = useState<any[] | undefined>(undefined);
     const navigate = useNavigate()
@@ -48,6 +50,13 @@ const PrivateLayout = () => {
 
     const {width} = useWindowSize();
 
+    const isTablet = useMemo(() => width && width < 992, [width]);
+
+    useEffect(() => {
+        if (isTablet) {
+            setDesktopCollapsed(false)
+        }
+    }, [isTablet]);
 
     const items: MenuItem[] = [
         getItem("Home", "1", <IoMdHome/>),
@@ -78,11 +87,12 @@ const PrivateLayout = () => {
             <Sider
                 breakpoint='lg'
                 collapsible
-                collapsedWidth="0"
-                collapsed={collapsed}
+                collapsedWidth={desktopCollapsed ? "80" : "0"}
+                collapsed={isTablet ? collapsed : desktopCollapsed}
                 onCollapse={() => setCollapsed(!collapsed)}
                 trigger={null}
                 style={{
+                    transition: "0.3s",
                     display: collapsed ? "none" : "block",
                     overflow: "hidden",
                     height: "98vh",
@@ -95,21 +105,49 @@ const PrivateLayout = () => {
                 }}
             >
                 <div className="logo-vertical" style={{
-                    justifyContent: "space-between",
-                }}>
-                    <img
+                    justifyContent: desktopCollapsed ? "center" : "space-between",
+                }}>{desktopCollapsed ? (
+                    <button
+                        className='toggle-menu-btn'
                         onClick={() => {
-                            navigate("/")
+                            if (isTablet) {
+                                setCollapsed(!collapsed)
+                            } else {
+                                setDesktopCollapsed(!desktopCollapsed);
+                            }
                         }}
-                        src={Logo}
-                        alt="logo"
-                        style={{
-                            width: 35,
-                            height: 35,
-                            objectFit: "cover",
-                            cursor: "pointer",
-                        }}
-                    />
+                    >
+                        {collapsed ? <MdSkipNext/> : <MdSkipPrevious/>}
+                    </button>
+                ) : (
+                    <>
+                        <img
+                            onClick={() => {
+                                navigate("/")
+                            }}
+                            src={Logo}
+                            alt="logo"
+                            style={{
+                                width: 35,
+                                height: 35,
+                                objectFit: "cover",
+                                cursor: "pointer",
+                            }}
+                        />
+                        <button
+                            className='toggle-menu-btn'
+                            onClick={() => {
+                                if (isTablet) {
+                                    setCollapsed(!collapsed)
+                                } else {
+                                    setDesktopCollapsed(!desktopCollapsed);
+                                }
+                            }}
+                        >
+                            {collapsed ? <MdSkipNext/> : <MdSkipPrevious/>}
+                        </button>
+                    </>
+                )}
                 </div>
                 <Menu
                     theme="dark"
@@ -135,9 +173,13 @@ const PrivateLayout = () => {
             </Sider>
             <Layout
                 className="site-layout min-h-screen"
-                style={{background: "#ebebeb",}}
+                style={{
+                    background: "#ebebeb",
+                    marginLeft: isTablet ? 0 : (desktopCollapsed ? 80 : 200),
+                    transition: "margin-left 0.3s"
+                }}
                 onClick={() => {
-                    if (!collapsed && width && width < 768) {
+                    if (!collapsed && width && width < 992) {
                         setCollapsed(true)
                     }
                 }}
@@ -147,8 +189,8 @@ const PrivateLayout = () => {
                 </Header>
                 <Content
                     style={{
-                    marginLeft: 22,
-                }}>
+                        marginLeft: 22,
+                    }}>
                     <div style={{
                         paddingTop: 16,
                         paddingRight: 24,

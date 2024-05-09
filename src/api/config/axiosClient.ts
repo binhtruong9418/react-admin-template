@@ -1,6 +1,6 @@
 import axios from 'axios';
 import queryString from 'query-string';
-import {JWT_LOCAL_STORAGE_KEY} from "../../helper/constant";
+import {JWT_LOCAL_STORAGE_KEY} from "../../config/constant";
 
 
 const axiosClient = axios.create({

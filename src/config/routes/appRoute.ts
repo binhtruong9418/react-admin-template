@@ -1,4 +1,4 @@
-import {DashboardPage, ForgotPasswordPage, LoginPage, RegisterPage} from "../pages";
+import {DashboardPage, ForgotPasswordPage, LoginPage, RegisterPage} from "../../pages";
 
 const appRoute = {
     dashboard: {
