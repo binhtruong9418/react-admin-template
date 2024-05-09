@@ -2,6 +2,7 @@ import "./login.css";
 import {Button, Form, Image, Input} from "antd";
 import Logo from '../../assets/react.svg'
 import {useTranslation} from "react-i18next";
+import {Link} from "react-router-dom";
 
 const ForgotPassword = () => {
     const [form] = Form.useForm();
@@ -45,6 +46,12 @@ const ForgotPassword = () => {
                 >
                     {t("Forgot Password")}
                 </Button>
+                <div className={'mt-3 text-center'}>
+                    <span className={'text-sm'}>{t("Already have an account?")}</span>
+                    <Link to={'/login'} className={'text-blue-500 text-sm'}>
+                        {t(" Login")}
+                    </Link>
+                </div>
             </div>
         </main>
     );

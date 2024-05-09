@@ -1,23 +1,13 @@
-import {
-    Navigate,
-    Route,
-    Routes,
-    useLocation,
-} from "react-router-dom";
+import {Navigate, Route, Routes, useLocation,} from "react-router-dom";
 import {PrivateLayout} from "./index.ts";
-import {useMemo} from "react";
 import {JWT_LOCAL_STORAGE_KEY} from "../config/constant";
 import {NotFoundPage} from "../pages";
 import appRoute from "../config/routes/appRoute.ts";
+import {useLocalStorage} from "@uidotdev/usehooks";
 
 const AppLayout = () => {
     const location = useLocation();
-    const authed = useMemo(
-        () => {
-            return !!window.localStorage.getItem(JWT_LOCAL_STORAGE_KEY)
-        },
-        [location.pathname]
-    );
+    const [token = ''] = useLocalStorage(JWT_LOCAL_STORAGE_KEY, '');
     return (
         <Routes>
             <Route>
@@ -27,7 +17,7 @@ const AppLayout = () => {
                             <Route
                                 key={path}
                                 element={
-                                    !requiredLogin && !authed ? (
+                                    !token ? (
                                         <Component/>
                                     ) : (
                                         <Navigate to={appRoute.dashboard.path} replace={true}/>
@@ -47,10 +37,10 @@ const AppLayout = () => {
                             <Route
                                 key={path}
                                 element={
-                                    authed ? (
+                                    token && location.pathname === path ? (
                                         <Component/>
                                     ) : (
-                                        <Navigate to="/login"/>
+                                        <Navigate to={appRoute.login.path}/>
                                     )
                                 }
                                 path={path}
