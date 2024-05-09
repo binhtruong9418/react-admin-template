@@ -2,6 +2,8 @@
 
 This is a template for a React project using Vite and some other libraries like Zustand, React Router, React Query, Axios, React i8next, and Tailwind CSS.
 
+[LINK DEMO](https://react-zustand-template.pages.dev)
+
 ## Installation
 
 1. Clone the repository
