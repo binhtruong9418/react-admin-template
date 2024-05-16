@@ -98,8 +98,7 @@ const PrivateLayout = () => {
                     height: "98vh",
                     position: "fixed",
                     left: 10,
-                    top: "50%",
-                    transform: "translateY(-50%)",
+                    marginTop: "0.5rem",
                     borderRadius: "1rem",
                     zIndex: 2000,
                 }}
